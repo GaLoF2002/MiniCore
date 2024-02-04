@@ -1,0 +1,61 @@
+<h2>Establecer Fechas de Progreso</h2>
+<form action="/filter-notas" method="post">
+  <fieldset>
+    <legend>Progreso 1 - 25% de la nota final</legend>
+    <div>
+      <label for="fechaInicioSemestre1">Fecha de Inicio del Progreso 1:</label>
+      <input type="date" id="fechaInicioSemestre1" name="fechaInicioSemestre1" required>
+    </div>
+    <div>
+      <label for="fechaFinSemestre1">Fecha de Fin del Semestre 1:</label>
+      <input type="date" id="fechaFinSemestre1" name="fechaFinSemestre1" required>
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <legend>Progreso 2 - 35% de la nota final</legend>
+    <div>
+      <label for="fechaInicioSemestre2">Fecha de Inicio del Progreso 2:</label>
+      <input type="date" id="fechaInicioSemestre2" name="fechaInicioSemestre2" required>
+    </div>
+    <div>
+      <label for="fechaFinSemestre2">Fecha de Fin del Progreso 2:</label>
+      <input type="date" id="fechaFinSemestre2" name="fechaFinSemestre2" required>
+    </div>
+  </fieldset>
+
+  <button type="submit">Establecer Fechas</button>
+</form>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  const form = document.querySelector("form");
+  form.onsubmit = function(e) {
+    const inicioSemestre1 = document.getElementById("fechaInicioSemestre1").value;
+    const finSemestre1 = document.getElementById("fechaFinSemestre1").value;
+    const inicioSemestre2 = document.getElementById("fechaInicioSemestre2").value;
+    const finSemestre2 = document.getElementById("fechaFinSemestre2").value;
+
+    // Validar que la fecha de fin de cada progreso no sea menor que su fecha de inicio
+    if (new Date(finSemestre1) < new Date(inicioSemestre1)) {
+      e.preventDefault(); // Evita que el formulario se envíe
+      alert("La fecha de fin del Progreso 1 no puede ser anterior a su fecha de inicio.");
+      return; // Detener la ejecución adicional de la función
+    }
+
+    if (new Date(finSemestre2) < new Date(inicioSemestre2)) {
+      e.preventDefault(); // Evita que el formulario se envíe
+      alert("La fecha de fin del Progreso 2 no puede ser anterior a su fecha de inicio.");
+      return; // Detener la ejecución adicional de la función
+    }
+
+    // Validar que la fecha de inicio del Progreso 2 sea posterior a la fecha de fin del Progreso 1
+    if (new Date(inicioSemestre2) <= new Date(finSemestre1)) {
+      e.preventDefault(); // Evita que el formulario se envíe
+      alert("La fecha de inicio del Progreso 2 debe ser posterior a la fecha de fin del Progreso 1.");
+    }
+  };
+});
+</script>
+
+
+<a href="/">Regresar al Home</a>

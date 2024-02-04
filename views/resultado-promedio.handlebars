@@ -1,0 +1,28 @@
+<h2>Resultados de Notas por Estudiante y Progreso</h2>
+
+{{#if estudiantes.length}}
+  <table>
+    <thead>
+      <tr>
+        <th>Estudiante</th>
+        <th>Promedio Progreso 1</th>
+        <th>Promedio Progreso 2</th>
+        <th>Nota mínima a sacar en Progreso 3</th> <!-- Columna adicional -->
+      </tr>
+    </thead>
+    <tbody>
+      {{#each estudiantes}}
+        <tr>
+          <td>{{this.nombre}}</td>
+          <td>{{this.promedioSemestre1}}</td>
+          <td>{{this.promedioSemestre2}}</td>
+          <td>{{this.notaMinimaProgreso3}}</td> <!-- Mostrar nota mínima -->
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+{{else}}
+  <p>No se encontraron notas.</p>
+{{/if}}
+
+<a href="/">Regresar al Home</a>
